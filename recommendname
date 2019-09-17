@@ -1,0 +1,36 @@
+sam package \
+    --template-file template.yaml \
+    --output-template-file packaged.yaml \
+    --s3-bucket mengyangcloudformation
+
+sam deploy \
+    --template-file packaged.yaml \
+    --stack-name simple-websocket-chat-app \
+    --capabilities CAPABILITY_IAM \
+    --parameter-overrides MyParameterSample=MySampleValue
+
+aws cloudformation describe-stacks \
+    --stack-name simple-websocket-chat-app --query 'Stacks[].Outputs'
+
+{"message": "sendmessage","data": "Hello, I am using WebSocket APIs in API Gateway."}
+{"message":"sendmessage", "data":"hello world"}
+
+{"message":"setname", "data":"bai"}
+
+
+arn:aws:lambda:ap-southeast-2:521956299881:function:greetings
+
+{
+    "Statement": [
+        {
+            "Action": [
+                "execute-api:ManageConnections"
+            ],
+            "Resource": [
+                "arn:aws:execute-api:ap-southeast-2:521956299881:ef56vstml4/*"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
+
